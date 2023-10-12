@@ -8,7 +8,16 @@
 // update and say "Log out". If a user clicks on the button again, its text
 // should switch from "Log Out" to "Log In".
 
-/// TODO: replace this with your code
+
+let button = document.getElementById("loginButton");
+button.addEventListener("click", function() {
+  if (button.innerText === "Log In") {
+    button.innerText = "Log Out";
+  } else {
+    button.innerText = "Log In";
+  }
+});
+
 
 // Send an alert
 //
@@ -17,7 +26,11 @@
 // A user should be able to enter what they want the alert to say in the
 // text box. Then, they can submit the form to trigger the alert.
 
-/// TODO: replace this with your code
+document.getElementById('send-alert').addEventListener('submit', function(evt) {
+    evt.preventDefault();
+    const message = document.getElementById('alert-message').value;
+    alert(message);
+  });
 
 // Add an item
 //
@@ -34,7 +47,11 @@
 //     <li>Item</li>  <!-- This was added after double-clicking -->
 //   </ol>
 
-/// TODO: replace this with your code
+document.getElementById('item-adder').addEventListener('dblclick', function() {
+    var newItem = document.createElement('li');
+    newItem.textContent = 'Item';
+    document.getElementById('list').appendChild(newItem);
+  });
 
 // Change colors
 //
@@ -45,7 +62,18 @@
 // Clicking on "Turn Stuff Red" should make text red and clicking on "Turn
 // Stuff Blue" should make text blue.
 
-/// TODO: replace this with your code
+document.getElementById('blue').addEventListener('click', function() {
+  var elements = document.getElementsByClassName('changes-colors');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.color = 'blue';
+  }
+});
+document.getElementById('red').addEventListener('click', function() {
+  var elements = document.getElementsByClassName('changes-colors');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.color = 'red';
+  }
+});
 
 // Calculate factorial
 //
@@ -62,7 +90,15 @@
 //   - calls your function that calculates a factorial
 //   - puts the result of the function inside the "result" span
 
-/// TODO: replace this with your code
+document.getElementById('factorial-calculator').addEventListener('submit', function(evt) {
+    evt.preventDefault();
+    const num = document.getElementById('factorial-input').value;
+    let result = 1;
+    for(let i = num; i > 1; i--){
+      result *= i;
+    }
+    document.getElementById('result').textContent = result;
+  });
 
 // Validate a form
 //
@@ -79,4 +115,15 @@
 // the feedback text to say "The word must be at least 4 characters long." and
 // change the color of the text to red..
 
-/// TODO: replace this with your code
+document.getElementById('recommend-word').addEventListener('submit', function(evt) {
+    evt.preventDefault();
+    const word = document.getElementById('word').value;
+    const feedback = document.querySelector('.form-feedback');
+    if (word.length >= 4) {
+      feedback.textContent = "Thanks for your submission!";
+      feedback.style.color = "green";
+    } else {
+      feedback.textContent = "The word must be at least 4 characters long.";
+      feedback.style.color = "red";
+    }
+  });

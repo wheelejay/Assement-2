@@ -1,0 +1,23 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+  };
+
+table {
+    border: 1px solid white;
+    margin-top: 50px;
+  }
+
+table, td, th {
+    border: 1px solid white;
+    padding: 5px;
+  }
+
+label {
+    display: inline-block;
+}
+
+button {
+    display: inline-block;
+}

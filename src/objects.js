@@ -13,8 +13,9 @@
 //     { firstName: 'Karlach', lastName: 'Cliffgate', location: 'Avernus' }
 //   ]);
 //   => ['Gale Dekarios', 'Wyll Ravengard', 'Karlach Cliffgate'];
-function getNames(people) {}
-
+function getNames(people) {
+  return people.map(person => `${person.firstName} ${person.lastName}`);
+}
 // Given an object representing a person, return their full name (first name and last name).
 // You MUST use object destructuring in your solution.
 //
@@ -24,7 +25,12 @@ function getNames(people) {}
 // Ex.:
 //   getName({ firstName: 'Gale', lastName: 'Dekarios', location: 'Waterdeep' });
 //   => 'Gale Dekarios'
-function getNameUsingDestructuring(person) {}
+function getNameUsingDestructuring(person) {
+  const {firstName, lastName } = person; 
+    return `${firstName} ${lastName}`;
+}
+
+
 
 // Given an array of objects representing people, return a new array of the
 // people matching the given location.
@@ -43,7 +49,12 @@ function getNameUsingDestructuring(person) {}
 //     { firstName: 'Wyll', lastName: 'Ravengard', location: "Baldur's Gate" },
 //     { firstName: 'Astarion', lastName: 'Ancunin', location: "Baldur's Gate" }
 //   ];
-function getPeopleByLocation(people, location) {}
+
+function getPeopleByLocation(people, location) {
+  return people.filter(person => person.location === location);
+};
+
+
 
 // Translate a phrase to pirate talk.
 //
@@ -72,7 +83,11 @@ const EN_PIRATE_LOOKUP = {
   hello: 'ahoy',
 };
 
-function translateToPirateTalk(phrase) {}
+function translateToPirateTalk(phrase) {
+  const words = phrase.split(" ");
+  const translatedWords = words.map(word => EN_PIRATE_LOOKUP[word] || word);
+  return translatedWords.join(" ");
+}
 
 // Return the number of occurrences of each word in a string.
 // This function doesn't handle punctuation and is case-sensitive, so you can
@@ -81,7 +96,21 @@ function translateToPirateTalk(phrase) {}
 // Ex.:
 //   wordCount('hello world')
 //   => { hello: 1, world: 1 }
-function wordCount(str) {}
+function wordCount(str) {
+  const words = str.split(" ");
+  const frequency = {};
+  
+  for (const word of words) {
+    if (frequency[word]) {
+      frequency[word]++;
+    } 
+    else {
+      frequency[word] = 1;
+    }
+  }
+  
+  return frequency;
+}
 
 // Given an object representing a bug, return true if the given bug is
 // available in the given month.
@@ -103,7 +132,9 @@ function wordCount(str) {}
 //     }
 //   }, 1);
 //   => true
-function isBugAvailable(bug, month) {}
+function isBugAvailable(bug, month) {
+  return bug.availability.months.includes(month);
+}
 
 // Given an array of objects representing bugs, return an object that'll be
 // used to build a calendar. The keys of the object should be the months of the
@@ -146,7 +177,19 @@ function isBugAvailable(bug, month) {}
 //     12: [],
 //   }
 
-function buildBugHuntCalendar(bugs) {}
+function buildBugHuntCalendar(bugs) {
+  const calendar = {};
+  for (const bug of bugs) {
+    const months = bug.availability.months;
+    for (const month of months) {
+      if (!(month in calendar)) {
+        calendar[month] = [];
+      }
+      calendar[month].push(bug.name);
+    }
+  }
+  return calendar;
+}
 
 export {
   buildBugHuntCalendar,
